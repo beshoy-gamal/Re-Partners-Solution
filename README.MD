@@ -99,7 +99,9 @@ This high-level solution design outlines the major technical components involved
 	  	- Native BigQuery Time Travel 
 	
 	  	** BigQuery automatically stores the history of your table changes for 7 days This allows to query the table exactly as it looked in the past.
+
 	  	** Example:
+
 			-- Query the table as it existed 1 hour ago
 			SELECT * FROM `streaming_pubsub_dataflow.orders`
 			FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
@@ -110,7 +112,8 @@ This high-level solution design outlines the major technical components involved
 		
 		 ** But that need to be consider as it will change the logic of ingestion and data quering
 	
-	     ** Example:
+	     * Example:
+
 				SELECT *
 				FROM `streaming_pubsub_dataflow.orders`
 				WHERE valid_from <= '2025-10-25 10:00:00'
