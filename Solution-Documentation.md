@@ -89,22 +89,47 @@ This high-level solution design outlines the major technical components involved
   So I have create a function to filter depending on the “event\_type” value, and next applyied Beam.Partition to split the messages in differt streams\
   
   <img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/167952c8-0005-4975-8ffa-b80e8a2e01d5" />
-
+	</br>
 
   <img width="468" height="125" alt="image" src="https://github.com/user-attachments/assets/456fc1c8-ef8e-48e4-9d0f-46b0dfa9bf1e" />
 
 
 - For the requirment  **“*Tracking historical data and time travel*”**
-- There are two solution depending on time retention required to trace\
-      - Native BigQuery Time Travel 
+	- There are two solution depending on time retention required to trace\
+	  	- Native BigQuery Time Travel 
+	
+	  	** BigQuery automatically stores the history of your table changes for 7 days This allows to query the table exactly as it looked in the past.
+	  	** Example:
+			-- Query the table as it existed 1 hour ago
+			SELECT * FROM `streaming_pubsub_dataflow.orders`
+			FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
+		
+		- Permanent History Tracking
+		
+		 ** Here need to add two columns to every table: valid\_from and valid\_to.
+		
+		 ** But that need to be consider as it will change the logic of ingestion and data quering
+	
+	     ** Example:
+				SELECT *
+				FROM `streaming_pubsub_dataflow.orders`
+				WHERE valid_from <= '2025-10-25 10:00:00'
+				AND (valid_to > '2023-11-20 10:00:00' OR valid_to IS NULL);
+   
+-  For the requirment of storing the data in GCS Bucket in Hierarchical structure path:
+  	* I have create the below function to idenitify the path Hierarchical, and use Apache Beam GCS WRITEFILE functionality
+     	<img width="913" height="439" alt="image" src="https://github.com/user-attachments/assets/57439cfd-839c-48a4-9f69-c715ad4b5e0a" />
 
-BigQuery automatically stores the history of your table changes for 7 days This allows to query the table exactly as it looked in the past.
+		<img width="936" height="337" alt="image" src="https://github.com/user-attachments/assets/ed4a0094-b084-4b83-a97c-71b54519d8d5" />
 
-\- Permanent History Tracking
+- for the requirment "Partitioning and clustering strategies"
+	** It is considered in BigQuery DDL files
 
-`	`Here need to add two columns to every table: valid\_from and valid\_to.
+	** My logic is to use the day (of the message time staom as a partion to optmize future queries),
+	And use business identifier to the clusering so in the future queries for adding WHERE in SQL will reduce the data amount processing that will achieve more optmization
+		
 
-`	`But that need to be consider as it will change the logic of ingestion and data quering 	
+
 
 **\
 
