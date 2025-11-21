@@ -26,46 +26,51 @@ This high-level solution design outlines the major technical components involved
 # Steps of the Implementation
   1. Create the PubSub Topic
   
-  ![A screenshot of a computer&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.002.png)
+<img width="490" height="219" alt="image" src="https://github.com/user-attachments/assets/0d7272ef-b7c1-45d4-a98f-e95db530d34f" />
+
   
   
   2. Create the PubSub Subscription
   
-  
-  **![](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.003.png)**
+  <img width="490" height="274" alt="image" src="https://github.com/user-attachments/assets/c99212b9-69c1-4eaf-ae0c-e9604aa544d4" />
+
   
   3. Using the DDL SQL files in the attached ZIP file, created here 3 tables for different event Types 
-     - Here the Schema of each table 
-  
-  
-  
-  
-  ![](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.004.png)
-  
-  ![](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.005.png)
-  
-  ![A screenshot of a computer&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.006.png)
+     - Here the Schema of each table
+
+        <img width="468" height="394" alt="image" src="https://github.com/user-attachments/assets/7ec16793-a418-4fab-a48f-c39152b9d874" />
+
+        <img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/a3c214ba-bdfe-400c-9e96-887462f84b46" />
+
+        <img width="468" height="255" alt="image" src="https://github.com/user-attachments/assets/fa0aa7ee-364e-4a9b-9f7a-a78b270fc8b6" />
+
+.
   	- Here the table under the BigQuery DataSet
-  
-  
+
+  <img width="499" height="220" alt="image" src="https://github.com/user-attachments/assets/d0778394-35d9-44df-b689-39ec68f9497a" />
+ 
 
   4. Using the Python file in the attached ZIP folder, there are Apache Beam Data Pipline, here screen from runnung the pipline
   
-     ![A screenshot of a computer&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.008.png)
+     <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/814b07a6-fdf5-4fc9-a86d-0ce02fb2d675" />
+
   
   
   
-  5. Sending samples of meaasages with the same schema for the created PubSub topic
+  5. Sending samples of meassages with the same schema for the created PubSub topic
   
-  ![A screenshot of a computer&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.009.png)
+  <img width="468" height="231" alt="image" src="https://github.com/user-attachments/assets/cd3c36f7-e24d-485d-b89e-29fe9ace7cef" />
+
   
   6. Here the data after procced by DataFlow and stored in Bigquery
   
-  ![](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.010.png)
+  <img width="504" height="295" alt="image" src="https://github.com/user-attachments/assets/ea4128c1-c85d-4c67-a3d0-d36662e60fae" />
+
   
   7. Here the data after procced by DataFlow and stored in GCS 
   
-  ![](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.011.png)
+  <img width="468" height="247" alt="image" src="https://github.com/user-attachments/assets/a8700de4-efe7-408a-8f50-c81a088a88d3" />
+
 
 
 
