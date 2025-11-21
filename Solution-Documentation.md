@@ -35,7 +35,7 @@ This high-level solution design outlines the major technical components involved
   <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/c99212b9-69c1-4eaf-ae0c-e9604aa544d4" />
 
   
-  3. Using the DDL SQL files in the attached ZIP file, created here 3 tables for different event Types 
+  3. Using the DDL SQL files in the BigQuery-DDL Folder, created here 3 tables for different event Types 
      - Here the Schema of each table
 
         <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/7ec16793-a418-4fab-a48f-c39152b9d874" />
@@ -52,7 +52,7 @@ This high-level solution design outlines the major technical components involved
   <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/d0778394-35d9-44df-b689-39ec68f9497a" />
  
 
-  4. Using the Python file in the attached ZIP folder, there are Apache Beam Data Pipline, here screen from runnung the pipline
+  4. Using the Python file dataflow_pipline.py, there are Apache Beam Data Pipline, here screen from runnung the pipline
   
      <img width="1200" height="500" alt="image" src="https://github.com/user-attachments/assets/814b07a6-fdf5-4fc9-a86d-0ce02fb2d675" />
 
