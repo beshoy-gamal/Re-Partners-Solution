@@ -26,50 +26,52 @@ This high-level solution design outlines the major technical components involved
 # Steps of the Implementation
   1. Create the PubSub Topic
   
-<img width="490" height="219" alt="image" src="https://github.com/user-attachments/assets/0d7272ef-b7c1-45d4-a98f-e95db530d34f" />
+  <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/0d7272ef-b7c1-45d4-a98f-e95db530d34f" />
 
   
   
   2. Create the PubSub Subscription
   
-  <img width="490" height="274" alt="image" src="https://github.com/user-attachments/assets/c99212b9-69c1-4eaf-ae0c-e9604aa544d4" />
+  <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/c99212b9-69c1-4eaf-ae0c-e9604aa544d4" />
 
   
   3. Using the DDL SQL files in the attached ZIP file, created here 3 tables for different event Types 
      - Here the Schema of each table
 
-        <img width="468" height="394" alt="image" src="https://github.com/user-attachments/assets/7ec16793-a418-4fab-a48f-c39152b9d874" />
+        <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/7ec16793-a418-4fab-a48f-c39152b9d874" />
+        
 
-        <img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/a3c214ba-bdfe-400c-9e96-887462f84b46" />
+        <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/a3c214ba-bdfe-400c-9e96-887462f84b46" />
+        
 
-        <img width="468" height="255" alt="image" src="https://github.com/user-attachments/assets/fa0aa7ee-364e-4a9b-9f7a-a78b270fc8b6" />
+        <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/fa0aa7ee-364e-4a9b-9f7a-a78b270fc8b6" />
 
 .
   	- Here the table under the BigQuery DataSet
 
-  <img width="499" height="220" alt="image" src="https://github.com/user-attachments/assets/d0778394-35d9-44df-b689-39ec68f9497a" />
+  <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/d0778394-35d9-44df-b689-39ec68f9497a" />
  
 
   4. Using the Python file in the attached ZIP folder, there are Apache Beam Data Pipline, here screen from runnung the pipline
   
-     <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/814b07a6-fdf5-4fc9-a86d-0ce02fb2d675" />
+     <img width="1200" height="500" alt="image" src="https://github.com/user-attachments/assets/814b07a6-fdf5-4fc9-a86d-0ce02fb2d675" />
 
   
   
   
   5. Sending samples of meassages with the same schema for the created PubSub topic
   
-  <img width="468" height="231" alt="image" src="https://github.com/user-attachments/assets/cd3c36f7-e24d-485d-b89e-29fe9ace7cef" />
+  <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/cd3c36f7-e24d-485d-b89e-29fe9ace7cef" />
 
   
   6. Here the data after procced by DataFlow and stored in Bigquery
   
-  <img width="504" height="295" alt="image" src="https://github.com/user-attachments/assets/ea4128c1-c85d-4c67-a3d0-d36662e60fae" />
+  <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/ea4128c1-c85d-4c67-a3d0-d36662e60fae" />
 
   
   7. Here the data after procced by DataFlow and stored in GCS 
   
-  <img width="468" height="247" alt="image" src="https://github.com/user-attachments/assets/a8700de4-efe7-408a-8f50-c81a088a88d3" />
+  <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/a8700de4-efe7-408a-8f50-c81a088a88d3" />
 
 
 
@@ -79,14 +81,18 @@ This high-level solution design outlines the major technical components involved
 
   As BigQuery not have Strict functionality, I have applied that in the dataprocessing pipline on DataFlow, so we will have make sure that the data ingested in BigQuery table have the required validations
 
-  ![A computer code with text&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.012.png)
+	<img width="468" height="139" alt="image" src="https://github.com/user-attachments/assets/8626f1ad-037f-4e03-aa1b-ea545cfcc100" />
+
 
 - For the requirment of sending all messages in one PubSub topic, here the Pipline need to identify every message type to store the results in the targeted BigQuery Table
 
   So I have create a function to filter depending on the “event\_type” value, and next applyied Beam.Partition to split the messages in differt streams\
-  ![A computer screen shot of a program&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.013.png)
+  
+  <img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/167952c8-0005-4975-8ffa-b80e8a2e01d5" />
 
-  ![A computer code with colorful text&#x0A;&#x0A;AI-generated content may be incorrect.](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.014.png)
+
+  <img width="468" height="125" alt="image" src="https://github.com/user-attachments/assets/456fc1c8-ef8e-48e4-9d0f-46b0dfa9bf1e" />
+
 
 - For the requirment  **“*Tracking historical data and time travel*”**
 - There are two solution depending on time retention required to trace\
@@ -103,4 +109,3 @@ BigQuery automatically stores the history of your table changes for 7 days This 
 **\
 
 
-![C2 General](Aspose.Words.83ea0252-a684-433f-9a34-ecb7d13eb127.015.png)
