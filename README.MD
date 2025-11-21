@@ -126,6 +126,7 @@ This high-level solution design outlines the major technical components involved
 		<img width="936" height="337" alt="image" src="https://github.com/user-attachments/assets/ed4a0094-b084-4b83-a97c-71b54519d8d5" />
 
 - for the requirment "Partitioning and clustering strategies"
+
 	** It is considered in BigQuery DDL files
 
 	** My logic is to use the day (of the message time staom as a partion to optmize future queries),
