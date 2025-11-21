@@ -128,7 +128,8 @@ def run(argv=None):
         for pcoll, event_type in zip([orders, users, inventory], ["orders", "user_activities", "inventory"]):
             (
                 pcoll
-                | f"WindowInto_{event_type}" >> beam.WindowInto(beam.window.FixedWindows(60))
+                | f"WindowInto_{event_type}" >> beam.WindowInto(beam.window.FixedWindows(60)) 
+                    #applying Windowing function as the data arrived in stream unbounded
                 | f"{event_type}_ToJSONBytes" >> beam.Map(to_json_bytes)
                 | f"Write{event_type.capitalize()}ToGCS" >> fileio.WriteToFiles(
                     path="gs://cpi_poc/temp",
